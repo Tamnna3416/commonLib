@@ -38,9 +38,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 GrantedAuthority authority = new SimpleGrantedAuthority(role);
 
-                System.out.println("Authorities in JWT: " + Collections.singletonList(authority));
-
-
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(username, null, Collections.singletonList(authority));
 
@@ -51,8 +48,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
-        System.out.println("JwtAuthFilter running for request: " + request.getRequestURI());
-
 
         filterChain.doFilter(request, response);
     }
